@@ -97,17 +97,39 @@ derivatives with respect to $x$, $y$, and $z$ at $x = -1$, $y = 2$, $z = 3$.\\\\
         \node[rec] (cube) at (4,6) {$()^3$};
         \node[rec] (add1) at (3,4) {+};
         \node[rec] (add2) at (3,2) {+};
-        \node[rec] (loss) at (3,0) {loss};
+        \node[rec] (output) at (3,0) {output};
 
         \draw [->] (x) to []node[]{} (mul);
         \draw [->] (y) to []node[]{} (mul);
         \draw [->] (z) to []node[]{} (cube);
-        \draw [->] (mul) to [left]node[]{$xy = -2$} (add1);
-        \draw [->] (cube) to [right]node[]{$z^3=27$} (add1);
-        \draw [->] (add1) to [right]node[]{$xy+z^3=25$} (add2);
-        \draw [->] (x) to [bend right]node[]{} (add2);
-        \draw [->] (add2) to [left]node[]{$f(x,y,z)=xy+z^3+x=24$} (loss);
+        \draw [->] (mul) to [left]node[]{$a = xy = -2$} (add1);
+        \draw [->] (cube) to [right]node[]{$b = z^3=27$} (add1);
+        \draw [->] (add1) to [right]node[]{$c = xy+z^3=25$} (add2);
+        \draw [->] (x) to [bend right=40,left]node[]{$d = x = -1$} (add2);
+        \draw [->] (add2) to [left]node[]{\tiny$f(x,y,z)=xy+z^3+x=24$} (output);
     \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[>=stealth]
+      \node[ell,label={\tiny$\frac{\partial f}{\partial x}=\frac{\partial f}{\partial d} + \frac{\partial a}{\partial x} = 3$}] (x) at (0,8) {$x = -1$};
+      \node[ell,label={\tiny$\frac{\partial f}{\partial y}=\frac{\partial f}{\partial c}\frac{\partial c}{\partial a}\frac{\partial a}{\partial y} = -1$}] (y) at (3,8) {$y = 2$};  
+      \node[ell,label={\tiny$\frac{\partial f}{\partial z}=\frac{\partial f}{\partial c}\frac{\partial c}{\partial b}\frac{\partial b}{\partial z} = 27$}] (z) at (6,8) {$z = 3$};
+
+      \node[rec] (mul) at (2,6) {*};
+      \node[rec] (cube) at (4,6) {$()^3$};
+      \node[rec] (add1) at (3,4) {+};
+      \node[rec] (add2) at (3,2) {+};
+      \node[rec] (output) at (3,0) {output};
+
+      \draw [<-] (x) to [left]node[]{\tiny$\frac{\partial a}{\partial x}=y=2$} (mul);
+      \draw [<-] (y) to [right]node[]{\tiny$\frac{\partial a}{\partial y}=x=-1$} (mul);
+      \draw [<-] (z) to [right]node[]{\tiny$\frac{\partial b}{\partial z}=3z^2=27$} (cube);
+      \draw [<-] (mul) to [left]node[]{$\frac{\partial c}{\partial a}=1$} (add1);
+      \draw [<-] (cube) to [right]node[]{$\frac{\partial c}{\partial b}=1$} (add1);
+      \draw [<-] (add1) to [right]node[]{$\frac{\partial f}{\partial c}=1$} (add2);
+      \draw [<-] (x) to [bend right=40,left]node[]{$\frac{\partial f}{\partial d} = 1$} (add2);
+      \draw [<-] (add2) to [left]node[]{\tiny$f(x,y,z)=xy+z^3+x=24$} (output);
+  \end{tikzpicture}
+
 
 \end{problem}
 % --------------------------------------------------------------
