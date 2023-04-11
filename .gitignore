@@ -458,3 +458,4 @@ TSWLatexianTemp*
 *.gz
 images/
 annotations/
+*.csv
