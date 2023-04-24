@@ -461,3 +461,7 @@ annotations/
 *.csv
 aclImdb/
 glove*.txt
+spa-eng/
+
+# machine learning models
+*.keras
