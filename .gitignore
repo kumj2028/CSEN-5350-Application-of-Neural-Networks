@@ -462,6 +462,7 @@ annotations/
 aclImdb/
 glove*.txt
 spa-eng/
+cats_dogs/
 
 # machine learning models
 *.keras
