@@ -463,6 +463,10 @@ aclImdb/
 glove*.txt
 spa-eng/
 cats_dogs/
+celeba_gan/
 
 # machine learning models
 *.keras
+
+# generated images
+generated_img*
